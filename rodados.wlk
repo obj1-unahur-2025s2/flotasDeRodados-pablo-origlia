@@ -7,6 +7,12 @@ class AutoEspecial {
   method peso() = peso
   
   method color() = color
+  
+  method puedeRealizar(
+    pedido
+  ) = ((self.velocidad() >= (10 + pedido.velocidad())) and (self.capacidad() >= pedido.cantidadDePasajeros())) and pedido.esColorCompatible(
+    self.color()
+  )
 }
 
 class Corsa {
