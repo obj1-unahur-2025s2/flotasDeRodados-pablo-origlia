@@ -17,14 +17,60 @@ class AutoEspecial {
 
 class Corsa {
   const color
+  const property image
+  var property position = new Position(x = 4, y = 7) // game.at(4,7) lo mismo
+  const posiciones = #{position}
+  var posicionAnterior = position
   
   method capacidad() = 4
-  
   method velocidad() = 150
-  
   method peso() = 1300
-  
   method color() = color
+
+  method posicionAnterior() = posicionAnterior
+  
+  method posicionAnterior(nuevaPosicion) {
+    posicionAnterior = nuevaPosicion
+  }
+  
+  method posiciones() = posiciones
+   
+  method color() = color
+  method pasoPor(posicion) = posiciones.contains(posicion)
+  
+  method moverseHacia(direccion) {
+    self.posicionAnterior(self.position())
+    direccion.recibe(self)
+    self.agregarPosicion(self.position())
+  }
+  
+  method agregarPosicion(unaPosicion) {
+    posiciones.add(unaPosicion)
+  }
+}
+
+object norte {
+  method recibe(elemento) {
+    elemento.position(elemento.position().up(1))
+  }
+}
+
+object sur {
+  method recibe(elemento) {
+    elemento.position(elemento.position().down(1))
+  }
+}
+
+object oeste {
+  method recibe(elemento) {
+    elemento.position(elemento.position().left(1))
+  }
+}
+
+object este {
+  method recibe(elemento) {
+    elemento.position(elemento.position().rigth(1))
+  }
 }
 
 class Kwid {
